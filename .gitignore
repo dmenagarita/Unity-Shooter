@@ -71,5 +71,6 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 /Space Shooter Pro/Builds
-/Space Shooter Pro/Library
-/Space Shooter Pro/Logs
+/Space Shooter Pro/Library/*
+/Space Shooter Pro/Logs/*
+/Space Shooter Pro/Logs/Temp/*
