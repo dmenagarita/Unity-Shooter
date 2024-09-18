@@ -122,6 +122,7 @@ public class Player : MonoBehaviour
         {
             _isShieldActive = false;
             _shield.SetActive(false);
+            _uiManager.ShowShieldText(false);
             return;
         }
 
@@ -180,5 +181,6 @@ public class Player : MonoBehaviour
     {
         _score += points;
         _uiManager.UpdateScoreText(_score);
+         _spawnManager.OnPlayerAddScore(_score);
     }
 }

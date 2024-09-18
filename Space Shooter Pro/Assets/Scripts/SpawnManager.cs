@@ -15,9 +15,16 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField]
     private bool _stopSpawning = false;
-
+    [SerializeField]
+    private float[] _spawnEnemiesSpeed = { 5.0f, 4.0f, 3.0f, 2.0f, 1.0f, 0.8f, 0.6f };
+    [SerializeField]
+    private float _currentSpawnEnemiesSpeed;
+    [SerializeField]
+    private int _enemiesThreasshold = 50;
     void Start()
     {
+        _currentSpawnEnemiesSpeed = _spawnEnemiesSpeed[0];
+        _enemiesThreasshold = 50;
     }
 
     public void StartSpawning()
@@ -36,7 +43,7 @@ public class SpawnManager : MonoBehaviour
             var posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
             GameObject newEnemy = Instantiate(_enemyPrefab, posToSpawn, Quaternion.identity);
             newEnemy.transform.parent = _enemyContainer.transform;
-            yield return new WaitForSeconds(5.0f);
+            yield return new WaitForSeconds(_currentSpawnEnemiesSpeed);
         }
         
     }
@@ -61,5 +68,18 @@ public class SpawnManager : MonoBehaviour
     public void OnPlayerDeath()
     {
         _stopSpawning = true;
+    }
+
+    public void OnPlayerAddScore(int score)
+    {
+        CalculateEnemiesSpeed(score);
+    }
+
+    private void CalculateEnemiesSpeed(int score)
+    {
+        var index = score / _enemiesThreasshold;
+        if (index < _spawnEnemiesSpeed.Length) { 
+            _currentSpawnEnemiesSpeed = _spawnEnemiesSpeed[index];
+        }
     }
 }

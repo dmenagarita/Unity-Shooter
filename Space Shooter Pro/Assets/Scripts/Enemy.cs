@@ -74,7 +74,7 @@ public class Enemy : MonoBehaviour
             _canFire = Time.time + _fireRate;
             var enemyLaser = Instantiate(_laserPrefab, transform.position, Quaternion.identity);
             //Debug.Break();
-            Laser[] lasers = enemyLaser.GetComponentsInChildren<Laser>();
+            Laser[] lasers = enemyLaser.GetComponents<Laser>();
             foreach (var l in lasers)
             {
                 l.AssignEnemyLaser();

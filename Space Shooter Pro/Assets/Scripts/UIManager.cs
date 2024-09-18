@@ -8,6 +8,8 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Text _scoreText;
     [SerializeField]
+    private Text _shieldText;
+    [SerializeField]
     private Image _LivesImage;
     [SerializeField]
     private Sprite[] _livesSprite;
@@ -16,11 +18,17 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Text _restartText;
 
+    [SerializeField]
+    private AudioClip _shieldActivatedSoundClip;
+
+    private AudioSource _audioSource;
+
     private GameManager _gameManager;
     // Start is called before the first frame update
     void Start()
     {
         _scoreText.text = "Score: 0";
+        _shieldText.gameObject.SetActive(false);
         _gameOverText.gameObject.SetActive(false);
         _restartText.gameObject.SetActive(false);
 
@@ -29,6 +37,13 @@ public class UIManager : MonoBehaviour
         if(_gameManager == null)
         {
             Debug.LogError("Game manager was not found");
+        }
+
+        _audioSource = GetComponent<AudioSource>();
+
+        if (_audioSource == null)
+        {
+            Debug.LogError("Error finding component audio source on the player");
         }
     }
 
@@ -40,6 +55,17 @@ public class UIManager : MonoBehaviour
     public void UpdateScoreText(int score)
     {
         _scoreText.text = $"Score: {score}";
+    }
+
+    public void ShowShieldText(bool activeValue)
+    {
+        _shieldText.gameObject.SetActive(activeValue);
+
+        if(activeValue)
+        {
+            _audioSource.clip = _shieldActivatedSoundClip;
+            _audioSource.Play();
+        }
     }
 
     public void UpdateLives(int currentLives)

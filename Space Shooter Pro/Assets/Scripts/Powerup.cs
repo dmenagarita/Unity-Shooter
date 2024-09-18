@@ -23,6 +23,13 @@ public class Powerup : MonoBehaviour
     [SerializeField]
     private AudioClip _clip;
 
+    private UIManager _uiManager;
+
+    void Start()
+    {
+        _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -53,6 +60,7 @@ public class Powerup : MonoBehaviour
                         break;
                     case type.Shields:
                         playerComponent.ActivateShield();
+                        _uiManager.ShowShieldText(true);
                         break;
                 }
                 
