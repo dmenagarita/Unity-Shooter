@@ -6,6 +6,8 @@ Download last version [Space Shooter Pro](https://github.com/dmenagarita/Unity-S
 
 Execute file: Space Shooter Pro.exe  and enjoy!
 
+[GamePlay Demo](https://github.com/dmenagarita/Unity-Shooter/blob/main/GamePlay_Demo.mp4)
+
 ## Features
 - Increase in difficulty as the game progresses.
 - Each time an enemy is eliminated, the score increases by 10 points, and every 50 points, the difficulty is increased.
